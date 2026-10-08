@@ -2765,8 +2765,8 @@ body {
 }
 
 .schedule-block {
-  --schedule-field-start: clamp(500px, 43vw, 780px);
-  --schedule-hero-height: clamp(560px, 50vw, 900px);
+  --schedule-field-start: clamp(360px, 32vw, 560px);
+  --schedule-hero-height: clamp(470px, 42vw, 720px);
   background: #76c7f0;
   isolation: isolate;
   overflow: hidden;
@@ -2785,14 +2785,18 @@ body {
 
 .schedule-stadium-bg {
   height: var(--schedule-hero-height);
+  mask-image: linear-gradient(180deg, #000 0%, #000 74%, transparent 100%);
   object-position: center center;
   top: 0;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 74%, transparent 100%);
 }
 
 .schedule-field-bg {
   height: calc(100% - var(--schedule-field-start));
+  mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 100%);
   object-position: center bottom;
   top: var(--schedule-field-start);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 100%);
 }
 
 .schedule-block::before {
@@ -2833,7 +2837,7 @@ body {
 }
 
 .schedule-block .section-inner {
-  padding-top: clamp(470px, 42vw, 760px);
+  padding-top: clamp(360px, 32vw, 580px);
   position: relative;
   z-index: 4;
 }
@@ -2912,8 +2916,8 @@ body {
 
 @media (max-width: 720px) {
   .schedule-block {
-    --schedule-field-start: 330px;
-    --schedule-hero-height: 390px;
+    --schedule-field-start: 260px;
+    --schedule-hero-height: 330px;
     background: #77c8f1;
   }
 
@@ -2931,7 +2935,7 @@ body {
   }
 
   .schedule-block .section-inner {
-    padding-top: 360px;
+    padding-top: 300px;
   }
 
   .schedule-table-wrap {
