@@ -2765,16 +2765,17 @@ body {
 }
 
 .schedule-block {
-  background: #0b3347;
+  background:
+    linear-gradient(180deg, #78c9f1 0%, #b9e8ff 58%, #f5f0e7 100%);
   isolation: isolate;
 }
 
 .schedule-stadium-bg {
-  height: 100%;
+  height: clamp(660px, 58vw, 920px);
   inset: 0;
   object-fit: cover;
-  object-position: center top;
-  opacity: 0.9;
+  object-position: center 54%;
+  opacity: 1;
   pointer-events: none;
   position: absolute;
   width: 100%;
@@ -2783,8 +2784,8 @@ body {
 
 .schedule-block::before {
   background:
-    linear-gradient(180deg, rgba(247, 240, 226, 0.1) 0%, rgba(247, 240, 226, 0.24) 48%, rgba(247, 240, 226, 0.52) 100%),
-    radial-gradient(circle at 50% 30%, rgba(255, 250, 240, 0.42), transparent 42%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 52%, rgba(120, 201, 241, 0.16) 70%, rgba(245, 240, 231, 0.86) 100%),
+    radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.12), transparent 44%);
   content: "";
   display: block;
   inset: 0;
@@ -2814,17 +2815,17 @@ body {
   animation: schedulePlayersDrift linear both;
   animation-range: entry 0% exit 100%;
   animation-timeline: view();
-  filter: saturate(1.04) contrast(1.02);
+  filter: saturate(1.04) contrast(1.02) drop-shadow(0 22px 28px rgba(6, 29, 40, 0.22));
   height: auto;
   left: 50%;
   max-width: none;
   opacity: 1;
   pointer-events: none;
   position: absolute;
-  top: clamp(112px, 10vw, 172px);
-  transform: translateX(-50%) scale(0.92);
+  top: clamp(118px, 8.4vw, 150px);
+  transform: translateX(-50%) scale(0.9);
   transform-origin: center top;
-  width: min(900px, 66vw);
+  width: min(880px, 60vw);
   z-index: 3;
 }
 
@@ -2833,7 +2834,7 @@ body {
 }
 
 .schedule-block .section-inner {
-  padding-top: clamp(330px, 36vw, 560px);
+  padding-top: clamp(520px, 46vw, 790px);
   position: relative;
   z-index: 4;
 }
@@ -2881,13 +2882,13 @@ body {
 
 @keyframes scheduleBackdropDrift {
   from {
-    background-position: center 38%;
+    background-position: center 48%;
     transform: scale(1);
   }
 
   to {
-    background-position: center 58%;
-    transform: scale(1.08);
+    background-position: center 56%;
+    transform: scale(1.03);
   }
 }
 
@@ -2912,28 +2913,28 @@ body {
 
 @media (max-width: 720px) {
   .schedule-block {
-    background: #f6efe2;
+    background:
+      linear-gradient(180deg, #72c5f1 0%, #bdeeff 56%, #f6efe2 100%);
   }
 
   .schedule-stadium-bg {
-    height: 100%;
-    opacity: 0.72;
-    object-position: center top;
+    height: 520px;
+    opacity: 1;
+    object-position: center center;
   }
 
   .schedule-block::before {
     background:
-      linear-gradient(180deg, rgba(247, 240, 226, 0.22) 0%, rgba(247, 240, 226, 0.52) 36%, rgba(247, 240, 226, 0.82) 100%),
-      radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.52), transparent 42%);
+      linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 48%, rgba(246, 239, 226, 0.88) 100%);
   }
 
   .schedule-player-collage {
-    top: 112px;
-    width: 118vw;
+    top: 118px;
+    width: 112vw;
   }
 
   .schedule-block .section-inner {
-    padding-top: 360px;
+    padding-top: 420px;
   }
 
   .schedule-table-wrap {
