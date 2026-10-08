@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "主場開打招募活動頁",
   description: "以棒球場插圖與滾動推進視覺呈現主場招募的一頁式網站。",
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: "/favicon.svg?v=baseball",
+    shortcut: "/favicon.svg?v=baseball",
   },
 };
 
