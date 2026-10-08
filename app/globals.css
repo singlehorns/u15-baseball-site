@@ -675,13 +675,9 @@ button {
 }
 
 .peek-venue {
-  background: linear-gradient(0deg, #ffd15a 0%, #ffe577 48%, #fff6b8 100%);
-  background-clip: text;
-  color: transparent;
+  color: var(--gold);
   font-size: clamp(48px, 7.2vw, 118px);
   margin-top: clamp(12px, 1.6vw, 26px);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .scene-swing {
