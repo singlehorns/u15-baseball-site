@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "森循紙業招募活動頁",
-  description: "以滾動視覺呈現永續製造與人才招募的一頁式網站。",
+  title: "主場開打招募活動頁",
+  description: "以棒球場插圖與滾動推進視覺呈現主場招募的一頁式網站。",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
