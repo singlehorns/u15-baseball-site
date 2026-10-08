@@ -2765,8 +2765,8 @@ body {
 }
 
 .schedule-block {
-  --schedule-field-start: clamp(360px, 32vw, 560px);
-  --schedule-hero-height: clamp(470px, 42vw, 720px);
+  --schedule-field-start: clamp(420px, 36vw, 640px);
+  --schedule-hero-height: clamp(530px, 46vw, 800px);
   background: #76c7f0;
   isolation: isolate;
   overflow: hidden;
@@ -2837,7 +2837,7 @@ body {
 }
 
 .schedule-block .section-inner {
-  padding-top: clamp(360px, 32vw, 580px);
+  padding-top: clamp(420px, 36vw, 650px);
   position: relative;
   z-index: 4;
 }
@@ -2916,8 +2916,8 @@ body {
 
 @media (max-width: 720px) {
   .schedule-block {
-    --schedule-field-start: 260px;
-    --schedule-hero-height: 330px;
+    --schedule-field-start: 300px;
+    --schedule-hero-height: 370px;
     background: #77c8f1;
   }
 
@@ -2935,7 +2935,7 @@ body {
   }
 
   .schedule-block .section-inner {
-    padding-top: 300px;
+    padding-top: 340px;
   }
 
   .schedule-table-wrap {
