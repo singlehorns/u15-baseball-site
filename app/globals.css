@@ -2765,16 +2765,17 @@ body {
 }
 
 .schedule-block {
-  background:
-    linear-gradient(180deg, #78c9f1 0%, #b9e8ff 58%, #f5f0e7 100%);
+  --schedule-field-start: clamp(500px, 43vw, 780px);
+  --schedule-hero-height: clamp(560px, 50vw, 900px);
+  background: #76c7f0;
   isolation: isolate;
+  overflow: hidden;
 }
 
-.schedule-stadium-bg {
-  height: clamp(660px, 58vw, 920px);
-  inset: 0;
+.schedule-stadium-bg,
+.schedule-field-bg {
+  left: 0;
   object-fit: cover;
-  object-position: center 54%;
   opacity: 1;
   pointer-events: none;
   position: absolute;
@@ -2782,22 +2783,20 @@ body {
   z-index: 0;
 }
 
-.schedule-block::before {
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 52%, rgba(120, 201, 241, 0.16) 70%, rgba(245, 240, 231, 0.86) 100%),
-    radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.12), transparent 44%);
-  content: "";
-  display: block;
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
-  z-index: 1;
+.schedule-stadium-bg {
+  height: var(--schedule-hero-height);
+  object-position: center center;
+  top: 0;
+}
+
+.schedule-field-bg {
+  height: calc(100% - var(--schedule-field-start));
+  object-position: center bottom;
+  top: var(--schedule-field-start);
 }
 
 .schedule-block::before {
-  animation: scheduleBackdropDrift linear both;
-  animation-range: entry 0% exit 100%;
-  animation-timeline: view();
+  content: none;
 }
 
 .schedule-block::after {
@@ -2822,10 +2821,10 @@ body {
   opacity: 1;
   pointer-events: none;
   position: absolute;
-  top: clamp(118px, 8.4vw, 150px);
+  top: clamp(72px, 6.2vw, 124px);
   transform: translateX(-50%) scale(0.9);
   transform-origin: center top;
-  width: min(880px, 60vw);
+  width: min(900px, 62vw);
   z-index: 3;
 }
 
@@ -2834,16 +2833,16 @@ body {
 }
 
 .schedule-block .section-inner {
-  padding-top: clamp(520px, 46vw, 790px);
+  padding-top: clamp(470px, 42vw, 760px);
   position: relative;
   z-index: 4;
 }
 
 .schedule-table-wrap {
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 28px 80px rgba(6, 29, 40, 0.18);
-  backdrop-filter: blur(6px);
+  backdrop-filter: none;
   position: relative;
   z-index: 2;
 }
@@ -2913,28 +2912,26 @@ body {
 
 @media (max-width: 720px) {
   .schedule-block {
-    background:
-      linear-gradient(180deg, #72c5f1 0%, #bdeeff 56%, #f6efe2 100%);
+    --schedule-field-start: 330px;
+    --schedule-hero-height: 390px;
+    background: #77c8f1;
   }
 
   .schedule-stadium-bg {
-    height: 520px;
-    opacity: 1;
     object-position: center center;
   }
 
-  .schedule-block::before {
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.12) 48%, rgba(246, 239, 226, 0.88) 100%);
+  .schedule-field-bg {
+    object-position: center bottom;
   }
 
   .schedule-player-collage {
-    top: 118px;
+    top: 86px;
     width: 112vw;
   }
 
   .schedule-block .section-inner {
-    padding-top: 420px;
+    padding-top: 360px;
   }
 
   .schedule-table-wrap {

@@ -270,6 +270,12 @@ export default function Home() {
           aria-hidden="true"
         />
         <img
+          className="schedule-field-bg"
+          src="/generated-scenes/baseball-stadium-hero.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <img
           className="schedule-player-collage"
           src="/generated-scenes/u15-international-players.png"
           alt=""
