@@ -264,6 +264,12 @@ export default function Home() {
 
       <section id="schedule" className="schedule-block section-band">
         <img
+          className="schedule-stadium-bg"
+          src="/generated-scenes/baseball-stadium-hero.png"
+          alt=""
+          aria-hidden="true"
+        />
+        <img
           className="schedule-player-collage"
           src="/generated-scenes/u15-international-players.png"
           alt=""
@@ -294,21 +300,21 @@ export default function Home() {
 
                   return (
                     <tr className={stageClass ? `final-row ${stageClass}-row` : undefined} key={`${date}-${time}-${matchup}-${index}`}>
-                      <td>
+                      <td data-label="日期">
                         <span className="date-badge">{date}</span>
                       </td>
-                      <td className="time-cell">{time}</td>
-                      <td>
+                      <td className="time-cell" data-label="時間">{time}</td>
+                      <td data-label="對戰組合">
                         <div className="matchup-cell">
                           <strong>{renderTeam(teamA)}</strong>
                           <span>vs</span>
                           <strong>{renderTeam(teamB)}</strong>
                         </div>
                       </td>
-                      <td>
+                      <td data-label="階段">
                         <span className={`stage-pill${stageClass ? ` ${stageClass}` : ""}`}>{stage}</span>
                       </td>
-                      <td className="score-cell">
+                      <td className="score-cell" data-label="比分">
                         <span>{scoreA}</span>
                         <i>:</i>
                         <span>{scoreB}</span>

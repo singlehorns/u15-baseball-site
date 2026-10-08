@@ -2765,12 +2765,38 @@ body {
 }
 
 .schedule-block {
-  background: url("/generated-scenes/baseball-stadium-hero.png") center top / cover fixed no-repeat;
+  background: #0b3347;
   isolation: isolate;
 }
 
+.schedule-stadium-bg {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: center top;
+  opacity: 0.9;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
 .schedule-block::before {
-  display: none !important;
+  background:
+    linear-gradient(180deg, rgba(247, 240, 226, 0.1) 0%, rgba(247, 240, 226, 0.24) 48%, rgba(247, 240, 226, 0.52) 100%),
+    radial-gradient(circle at 50% 30%, rgba(255, 250, 240, 0.42), transparent 42%);
+  content: "";
+  display: block;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.schedule-block::before {
+  animation: scheduleBackdropDrift linear both;
+  animation-range: entry 0% exit 100%;
+  animation-timeline: view();
 }
 
 .schedule-block::after {
@@ -2808,6 +2834,8 @@ body {
 
 .schedule-block .section-inner {
   padding-top: clamp(330px, 36vw, 560px);
+  position: relative;
+  z-index: 4;
 }
 
 .schedule-table-wrap {
@@ -2883,12 +2911,146 @@ body {
 }
 
 @media (max-width: 720px) {
+  .schedule-block {
+    background: #f6efe2;
+  }
+
+  .schedule-stadium-bg {
+    height: 100%;
+    opacity: 0.72;
+    object-position: center top;
+  }
+
+  .schedule-block::before {
+    background:
+      linear-gradient(180deg, rgba(247, 240, 226, 0.22) 0%, rgba(247, 240, 226, 0.52) 36%, rgba(247, 240, 226, 0.82) 100%),
+      radial-gradient(circle at 50% 18%, rgba(255, 255, 255, 0.52), transparent 42%);
+  }
+
   .schedule-player-collage {
-    top: 98px;
-    width: 108vw;
+    top: 112px;
+    width: 118vw;
   }
 
   .schedule-block .section-inner {
-    padding-top: 340px;
+    padding-top: 360px;
+  }
+
+  .schedule-table-wrap {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .schedule-board-title {
+    background: rgba(255, 255, 255, 0.84);
+    border: 1px solid rgba(11, 51, 71, 0.16);
+    margin-bottom: 14px;
+    padding: 18px;
+  }
+
+  .schedule-table {
+    border-collapse: separate;
+    border-spacing: 0 14px;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .schedule-table thead {
+    display: none;
+  }
+
+  .schedule-table tbody,
+  .schedule-table tr,
+  .schedule-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .schedule-table tr {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(11, 51, 71, 0.16);
+    box-shadow: 0 14px 34px rgba(6, 29, 40, 0.16);
+    padding: 14px;
+  }
+
+  .schedule-table tbody tr.championship-row {
+    background: rgba(255, 248, 223, 0.92);
+  }
+
+  .schedule-table tbody tr.third-place-row {
+    background: rgba(255, 241, 231, 0.92);
+  }
+
+  .schedule-table td,
+  .schedule-table tbody tr:nth-child(even) td,
+  .schedule-table tbody tr:hover td,
+  .schedule-table tbody tr:nth-child(even):hover td,
+  .schedule-table tbody tr.championship-row td,
+  .schedule-table tbody tr.third-place-row td {
+    background: transparent;
+  }
+
+  .schedule-table td {
+    align-items: center;
+    border-bottom: 1px solid rgba(11, 51, 71, 0.12);
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 11px 0;
+  }
+
+  .schedule-table td::before {
+    color: rgba(11, 51, 71, 0.62);
+    content: attr(data-label);
+    flex: 0 0 72px;
+    font-size: 13px;
+    font-weight: 1000;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .schedule-table td:nth-child(3) {
+    align-items: stretch;
+    display: block;
+  }
+
+  .schedule-table td:nth-child(3)::before {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .schedule-table td:last-child {
+    border-bottom: 0;
+  }
+
+  .date-badge,
+  .time-cell {
+    font-size: 16px;
+  }
+
+  .matchup-cell {
+    max-width: none;
+  }
+
+  .matchup-cell strong {
+    font-size: 20px;
+  }
+
+  .matchup-cell > span {
+    padding-left: 36px;
+  }
+
+  .stage-pill {
+    margin-left: auto;
+  }
+
+  .score-cell {
+    justify-content: space-between;
+  }
+
+  .score-cell span {
+    min-width: 28px;
   }
 }
