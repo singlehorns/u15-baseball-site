@@ -2000,6 +2000,33 @@ body {
   background: #ffffff;
 }
 
+.event-groups-media .info-panel {
+  border-top-color: #176c9c;
+}
+
+.event-groups-media .group-list p {
+  background: #ffffff;
+  border: 1px solid #87afc3;
+  border-left: 4px solid #176c9c;
+  padding: 12px 16px;
+}
+
+.event-groups-media .group-list strong {
+  color: #176c9c;
+}
+
+.event-groups-media .group-list span {
+  color: var(--navy);
+}
+
+.event-groups-media .channel-tags span {
+  background: #ffffff;
+  border: 2px solid #6b9bb5;
+  border-radius: 4px;
+  color: var(--navy);
+  padding: 8px 12px;
+}
+
 .details-block::before {
   border-left: 1px solid rgba(11, 51, 71, 0.055);
   border-right: 1px solid rgba(11, 51, 71, 0.055);

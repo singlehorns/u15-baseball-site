@@ -394,7 +394,7 @@ export default function Home() {
             ))}
           </div>
 
-          <div className="info-split">
+          <div className="info-split event-groups-media">
             <article className="info-panel" data-reveal="left">
               <TrackingTitle as="h3" text="參賽隊伍分組" />
               <div className="group-list">
