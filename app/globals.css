@@ -3093,6 +3093,27 @@ body {
     --reveal-duration: 440ms;
   }
 
+  .roster-heading [data-reveal] {
+    --reveal-y: 44px;
+    --reveal-duration: 1000ms;
+  }
+
+  [data-reveal="roster-player"] {
+    --reveal-x: 24px;
+    --reveal-y: 12px;
+    --reveal-duration: 820ms;
+    --reveal-delay: var(--roster-delay, 100ms);
+  }
+
+  .roster-role-title[data-reveal-state="visible"]::before {
+    animation: rosterPositionMark 900ms cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay) backwards;
+  }
+
+  @keyframes rosterPositionMark {
+    from { transform: rotate(-45deg) scale(0.55); }
+    to { transform: rotate(0deg) scale(1); }
+  }
+
   [data-reveal-delay="1"] { --reveal-delay: 90ms; }
   [data-reveal-delay="2"] { --reveal-delay: 180ms; }
   [data-reveal-delay="3"] { --reveal-delay: 270ms; }
@@ -3130,9 +3151,93 @@ body {
 
     [data-reveal="score"] { --reveal-y: 0px; }
     [data-reveal="zoom"] { --reveal-scale: 0.98; }
+    .roster-heading [data-reveal] {
+      --reveal-y: 26px;
+      --reveal-duration: 800ms;
+    }
+    [data-reveal="roster-player"] {
+      --reveal-x: 14px;
+      --reveal-y: 0px;
+      --reveal-duration: 680ms;
+      --reveal-delay: min(var(--roster-delay, 100ms), 240ms);
+    }
     [data-reveal-delay="1"],
     [data-reveal-delay="2"],
     [data-reveal-delay="3"] { --reveal-delay: 60ms; }
+  }
+}
+
+.tracking-title {
+  --reveal-delay: 0ms;
+  letter-spacing: 0;
+  overflow: clip;
+  overflow-clip-margin: 0.2em;
+  position: relative;
+}
+
+.tracking-copy {
+  display: block;
+  min-width: 0;
+}
+
+.tracking-char,
+.tracking-word {
+  display: inline-block;
+}
+
+.tracking-word { white-space: nowrap; }
+
+.title-row.tracking-title,
+.peek-line.tracking-title { overflow: visible; }
+
+.title-row .tracking-copy {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 820px) {
+  .peek-venue.tracking-title { font-size: 48px; }
+}
+
+@media (max-width: 520px) {
+  .peek-venue.tracking-title { font-size: 30px; }
+}
+
+@media screen and (prefers-reduced-motion: no-preference) {
+  .tracking-title[data-reveal-state] {
+    animation: none;
+    opacity: 1;
+    scale: none;
+    translate: none;
+  }
+
+  .tracking-title[data-reveal-state="pending"] .tracking-char {
+    opacity: 0;
+    translate: var(--tracking-offset, 0px) 0;
+  }
+
+  .tracking-title[data-reveal-state="pending"]::before { opacity: 0; }
+
+  .tracking-title[data-reveal-state="visible"] .tracking-char {
+    animation: titleTrackingContract 1500ms cubic-bezier(0.215, 0.61, 0.355, 1) var(--reveal-delay) backwards;
+  }
+
+  @keyframes titleTrackingContract {
+    from {
+      opacity: 0;
+      translate: var(--tracking-offset, 0px) 0;
+    }
+    35% { opacity: 0.65; }
+    to {
+      opacity: 1;
+      translate: 0 0;
+    }
+  }
+
+  @media (max-width: 820px) {
+    .tracking-title[data-reveal-state="visible"] .tracking-char {
+      animation-duration: 1200ms;
+    }
   }
 }
 

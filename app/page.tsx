@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useScrollReveal } from "./use-scroll-reveal";
+import { TrackingTitle } from "./tracking-title";
 
 const schedule = [
   ["08/17（日）", "13:30", "香港 vs 日本", "B組預賽", "1：14"],
@@ -194,20 +195,8 @@ export default function Home() {
           <div className="kv-content">
             <div className="kv-main">
               <div className="kv-title" aria-label="熱血青春 主場開打">
-                <div className="title-row top" data-reveal="heading">
-                  {["熱", "血", "青", "春"].map((char) => (
-                    <span className="title-char" key={char}>
-                      {char}
-                    </span>
-                  ))}
-                </div>
-                <div className="title-row bottom" data-reveal="heading" data-reveal-delay="1">
-                  {["主", "場", "開", "打"].map((char) => (
-                    <span className="title-char" key={char}>
-                      {char}
-                    </span>
-                  ))}
-                </div>
+                <TrackingTitle as="div" className="title-row top" text="熱血青春" hero />
+                <TrackingTitle as="div" className="title-row bottom" text="主場開打" hero delay={1} />
               </div>
 
               <div className="kv-subtitle" data-reveal="rise" data-reveal-delay="3">
@@ -219,8 +208,8 @@ export default function Home() {
 
           <div className="about-peek" aria-label="8/17-8/23 台南亞太國際棒球場舉行">
             <div className="peek-title">
-              <div className="peek-line peek-date">8/17-8/23</div>
-              <div className="peek-line peek-venue">台南亞太國際棒球場</div>
+              <TrackingTitle as="div" className="peek-line peek-date" text="8/17-8/23" active={progress > 0.7} />
+              <TrackingTitle as="div" className="peek-line peek-venue" text="台南亞太國際棒球場" active={progress > 0.7} delay={1} />
             </div>
             <div className="swing-layer scene-swing" aria-hidden="true">
               <div className="swing-bat">
@@ -243,21 +232,26 @@ export default function Home() {
 
       <section id="about" className="intro section-band">
         <div className="section-inner roster-section">
-          <div className="roster-heading" data-reveal="heading">
-            <p className="section-kicker">Team Roster</p>
-            <h2>2025 U15亞洲青少棒中華隊完整名單</h2>
-            <p>
+          <div className="roster-heading">
+            <p className="section-kicker" data-reveal="heading" data-reveal-repeat>Team Roster</p>
+            <TrackingTitle text="2025 U15亞洲青少棒中華隊完整名單" delay={1} />
+            <p data-reveal="rise" data-reveal-repeat data-reveal-delay="2">
               中華隊目標直指賽會二連霸。這批選手在國內各大賽事屢創佳績，並在選拔賽中脫穎而出，從火力十足的王牌投手到穩定打擊手，展現出挑戰更高榮耀的完整戰力。
             </p>
           </div>
 
           <div className="roster-grid">
             {rosterGroups.map((group, index) => (
-              <article className="roster-card" data-reveal="rise" data-reveal-delay={index % 3} key={group.role}>
-                <h3>{group.role}</h3>
+              <article className="roster-card" key={group.role}>
+                <TrackingTitle as="h3" className="roster-role-title" text={group.role} delay={index % 3} />
                 <ul>
-                  {group.players.map((player) => (
-                    <li key={player}>{player}</li>
+                  {group.players.map((player, playerIndex) => (
+                    <li
+                      data-reveal="roster-player"
+                      data-reveal-repeat
+                      style={{ "--roster-delay": `${(index % 3) * 110 + playerIndex * 80 + 100}ms` } as CSSProperties}
+                      key={player}
+                    >{player}</li>
                   ))}
                 </ul>
               </article>
@@ -287,9 +281,9 @@ export default function Home() {
         />
         <div className="section-inner schedule-section">
           <div className="schedule-table-wrap">
-            <div className="schedule-board-title" data-reveal="heading">
-              <p>Schedule / Results</p>
-              <h2>2025 U15亞洲青少棒錦標賽賽程戰績表</h2>
+            <div className="schedule-board-title">
+              <p data-reveal="heading">Schedule / Results</p>
+              <TrackingTitle text="2025 U15亞洲青少棒錦標賽賽程戰績表" />
             </div>
             <table className="schedule-table">
               <thead>
@@ -346,9 +340,9 @@ export default function Home() {
           </figure>
 
           <div className="ticket-copy">
-            <div data-reveal="heading">
-              <p className="section-kicker">Tickets</p>
-              <h2>票種及座位圖</h2>
+            <div>
+              <p className="section-kicker" data-reveal="heading">Tickets</p>
+              <TrackingTitle text="票種及座位圖" />
             </div>
             <ul className="ticket-list">
               <li data-reveal="right">
@@ -371,7 +365,7 @@ export default function Home() {
           </div>
 
           <div className="ticket-notes" data-reveal="rise">
-            <h3>注意事項</h3>
+            <TrackingTitle as="h3" text="注意事項" />
             <ul>
               {ticketNotes.map((note) => (
                 <li key={note}>{note}</li>
@@ -383,9 +377,9 @@ export default function Home() {
 
       <section id="details" className="details-block section-band">
         <div className="section-inner details-section">
-          <div className="details-heading" data-reveal="heading">
-            <p className="section-kicker">Event Info</p>
-            <h2>賽事基本資訊與規則</h2>
+          <div className="details-heading">
+            <p className="section-kicker" data-reveal="heading">Event Info</p>
+            <TrackingTitle text="賽事基本資訊與規則" />
           </div>
 
           <div className="fact-grid">
@@ -399,7 +393,7 @@ export default function Home() {
 
           <div className="info-split">
             <article className="info-panel" data-reveal="left">
-              <h3>參賽隊伍分組</h3>
+              <TrackingTitle as="h3" text="參賽隊伍分組" />
               <div className="group-list">
                 {tournamentGroups.map(([group, teams]) => (
                   <p key={group}>
@@ -411,7 +405,7 @@ export default function Home() {
             </article>
 
             <article className="info-panel" data-reveal="right" data-reveal-delay="1">
-              <h3>轉播平台</h3>
+              <TrackingTitle as="h3" text="轉播平台" />
               <div className="channel-tags">
                 {broadcastChannels.map((channel) => (
                   <span key={channel}>{channel}</span>
@@ -421,7 +415,7 @@ export default function Home() {
           </div>
 
           <article className="info-panel wide-panel" data-reveal="rise">
-            <h3>賽程設計</h3>
+            <TrackingTitle as="h3" text="賽程設計" />
             <div className="format-list">
               {formatRows.map(([phase, desc]) => (
                 <p key={phase}>
@@ -434,7 +428,7 @@ export default function Home() {
 
           <div className="info-split">
             <article className="info-panel" data-reveal="left">
-              <h3>比賽規則</h3>
+              <TrackingTitle as="h3" text="比賽規則" />
               <ul className="clean-list">
                 <li>正規 7 局制；四局領先 15 分或五局領先 10 分可提前結束。</li>
                 <li>七局和局時自第 8 局起採突破僵局制，一、二壘有人。</li>
@@ -442,7 +436,7 @@ export default function Home() {
             </article>
 
             <article className="info-panel" data-reveal="right" data-reveal-delay="1">
-              <h3>同分排名順序</h3>
+              <TrackingTitle as="h3" text="同分排名順序" />
               <ol className="rank-list">
                 {tieBreakers.map((item) => (
                   <li key={item}>{item}</li>
@@ -453,7 +447,7 @@ export default function Home() {
 
           <div className="info-split">
             <article className="info-panel" data-reveal="left">
-              <h3>投手投球限制</h3>
+              <TrackingTitle as="h3" text="投手投球限制" />
               <table className="compact-table">
                 <thead>
                   <tr>
@@ -473,7 +467,7 @@ export default function Home() {
             </article>
 
             <article className="info-panel" data-reveal="right" data-reveal-delay="1">
-              <h3>各類獎項與積分</h3>
+              <TrackingTitle as="h3" text="各類獎項與積分" />
               <ul className="clean-list">
                 {awardNotes.map((note) => (
                   <li key={note}>{note}</li>
