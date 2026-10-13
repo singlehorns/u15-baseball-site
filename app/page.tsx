@@ -337,13 +337,13 @@ export default function Home() {
 
       <section id="tickets" className="intro section-band">
         <div className="section-inner ticket-layout">
-          <figure className="ticket-map" data-reveal="zoom">
+          <figure className="ticket-map" data-reveal="right">
             <img src="/generated-scenes/seat-map.jpg" alt="2025 U-15內野座位圖" />
             <figcaption>2025 U-15座位圖。（圖／翻攝自拓元售票系統）</figcaption>
           </figure>
 
           <div className="ticket-copy">
-            <div>
+            <div data-reveal="right">
               <p className="section-kicker" data-reveal="heading">Tickets</p>
               <TrackingTitle text="票種及座位圖" />
             </div>
@@ -367,7 +367,7 @@ export default function Home() {
             </ul>
           </div>
 
-          <div className="ticket-notes" data-reveal="rise">
+          <div className="ticket-notes" data-reveal="right">
             <TrackingTitle as="h3" text="注意事項" />
             <ul>
               {ticketNotes.map((note) => (
@@ -380,14 +380,14 @@ export default function Home() {
 
       <section id="details" className="details-block section-band">
         <div className="section-inner details-section">
-          <div className="details-heading">
+          <div className="details-heading" data-reveal="right">
             <p className="section-kicker" data-reveal="heading">Event Info</p>
             <TrackingTitle text="賽事基本資訊與規則" />
           </div>
 
           <div className="fact-grid">
             {eventFacts.map(([label, value], index) => (
-              <article className="fact-card" data-reveal="rise" data-reveal-delay={index % 4} key={label}>
+              <article className="fact-card" data-reveal="right" data-reveal-delay={index % 4} key={label}>
                 <span>{label}</span>
                 <strong>{value}</strong>
               </article>
@@ -395,7 +395,7 @@ export default function Home() {
           </div>
 
           <div className="info-split event-groups-media">
-            <article className="info-panel" data-reveal="left">
+            <article className="info-panel" data-reveal="right">
               <TrackingTitle as="h3" text="參賽隊伍分組" />
               <div className="group-list">
                 {tournamentGroups.map(([group, teams]) => (
@@ -417,7 +417,7 @@ export default function Home() {
             </article>
           </div>
 
-          <article className="info-panel wide-panel" data-reveal="rise">
+          <article className="info-panel wide-panel" data-reveal="right">
             <TrackingTitle as="h3" text="賽程設計" />
             <div className="format-list">
               {formatRows.map(([phase, desc]) => (
@@ -430,7 +430,7 @@ export default function Home() {
           </article>
 
           <div className="info-split">
-            <article className="info-panel" data-reveal="left">
+            <article className="info-panel" data-reveal="right">
               <TrackingTitle as="h3" text="比賽規則" />
               <ul className="clean-list">
                 <li>正規 7 局制；四局領先 15 分或五局領先 10 分可提前結束。</li>
@@ -449,7 +449,7 @@ export default function Home() {
           </div>
 
           <div className="info-split">
-            <article className="info-panel" data-reveal="left">
+            <article className="info-panel" data-reveal="right">
               <TrackingTitle as="h3" text="投手投球限制" />
               <table className="compact-table">
                 <thead>
