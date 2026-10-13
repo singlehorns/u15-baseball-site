@@ -31,22 +31,26 @@ export function ScheduleTableScroll({ children }: { children: ReactNode }) {
 
   return (
     <>
-      <input
-        className="schedule-scroll-rail"
-        type="range"
-        aria-label="賽程表左右滑動"
-        aria-valuetext={`${Math.round(percent)}%`}
-        min={0}
-        max={100}
-        step={1}
-        value={percent}
-        hidden={position.max <= 1}
-        onChange={event => {
-          if (!scrollRef.current) return;
-          scrollRef.current.scrollLeft = (event.currentTarget.valueAsNumber / 100) * position.max;
-          syncPosition();
-        }}
-      />
+      <div className="schedule-scroll-control" hidden={position.max <= 1}>
+        <input
+          className="schedule-scroll-rail"
+          type="range"
+          aria-label="賽程表左右滑動"
+          aria-valuetext={`${Math.round(percent)}%`}
+          min={0}
+          max={100}
+          step={1}
+          value={percent}
+          onChange={event => {
+            if (!scrollRef.current) return;
+            scrollRef.current.scrollLeft = (event.currentTarget.valueAsNumber / 100) * position.max;
+            syncPosition();
+          }}
+        />
+        <svg className="schedule-scroll-base" viewBox="0 0 40 38" aria-hidden="true" focusable="false">
+          <path d="M3 4h34v17L20 34 3 21Z" fill="#fff" stroke="#0b3347" strokeWidth="3" strokeLinejoin="round" />
+        </svg>
+      </div>
       <div
         ref={scrollRef}
         className="schedule-table-scroll"
