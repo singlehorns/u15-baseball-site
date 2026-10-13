@@ -2991,19 +2991,19 @@ body {
 .schedule-scroll-rail::-webkit-slider-thumb {
   appearance: none;
   -webkit-appearance: none;
-  width: 64px;
-  height: 60px;
-  margin-top: -26px;
+  width: 76px;
+  height: 64px;
+  margin-top: -28px;
   border: 0;
-  background: url("/runner-slider.svg") center / contain no-repeat;
+  background: url("/generated-scenes/scroll-runner.png") center / contain no-repeat;
   filter: drop-shadow(0 3px 2px rgba(11, 51, 71, 0.2));
 }
 
 .schedule-scroll-rail::-moz-range-thumb {
-  width: 64px;
-  height: 60px;
+  width: 76px;
+  height: 64px;
   border: 0;
-  background: url("/runner-slider.svg") center / contain no-repeat;
+  background: url("/generated-scenes/scroll-runner.png") center / contain no-repeat;
   filter: drop-shadow(0 3px 2px rgba(11, 51, 71, 0.2));
 }
 
