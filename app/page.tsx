@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useScrollReveal } from "./use-scroll-reveal";
 import { TrackingTitle } from "./tracking-title";
+import { ScheduleTableScroll } from "./schedule-table-scroll";
 
 const schedule = [
   ["08/17（日）", "13:30", "香港 vs 日本", "B組預賽", "1：14"],
@@ -285,49 +286,51 @@ export default function Home() {
               <p data-reveal="heading">Schedule / Results</p>
               <TrackingTitle text="2025 U15亞洲青少棒錦標賽賽程戰績表" />
             </div>
-            <table className="schedule-table">
-              <thead>
-                <tr>
-                  <th>日期</th>
-                  <th>時間</th>
-                  <th>對戰組合</th>
-                  <th>階段</th>
-                  <th>比分</th>
-                </tr>
-              </thead>
-              <tbody>
-                {schedule.map(([date, time, matchup, stage, score], index) => {
-                  const [teamA, teamB] = matchup.split(" vs ");
-                  const [scoreA, scoreB] = score.split("：");
-                  const stageClass =
-                    stage === "冠軍賽" ? "championship" : stage === "季軍賽" ? "third-place" : "";
+            <ScheduleTableScroll>
+              <table className="schedule-table" aria-label="2025 U15亞洲青少棒賽程戰績">
+                <thead>
+                  <tr>
+                    <th scope="col">日期</th>
+                    <th scope="col">時間</th>
+                    <th scope="col">對戰組合</th>
+                    <th scope="col">階段</th>
+                    <th scope="col">比分</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {schedule.map(([date, time, matchup, stage, score], index) => {
+                    const [teamA, teamB] = matchup.split(" vs ");
+                    const [scoreA, scoreB] = score.split("：");
+                    const stageClass =
+                      stage === "冠軍賽" ? "championship" : stage === "季軍賽" ? "third-place" : "";
 
-                  return (
-                    <tr data-reveal="score" className={stageClass ? `final-row ${stageClass}-row` : undefined} key={`${date}-${time}-${matchup}-${index}`}>
-                      <td data-label="日期">
-                        <span className="date-badge">{date}</span>
-                      </td>
-                      <td className="time-cell" data-label="時間">{time}</td>
-                      <td data-label="對戰組合">
-                        <div className="matchup-cell">
-                          <strong>{renderTeam(teamA)}</strong>
-                          <span>vs</span>
-                          <strong>{renderTeam(teamB)}</strong>
-                        </div>
-                      </td>
-                      <td data-label="階段">
-                        <span className={`stage-pill${stageClass ? ` ${stageClass}` : ""}`}>{stage}</span>
-                      </td>
-                      <td className="score-cell" data-label="比分">
-                        <span>{scoreA}</span>
-                        <i>:</i>
-                        <span>{scoreB}</span>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+                    return (
+                      <tr data-reveal="score" className={stageClass ? `final-row ${stageClass}-row` : undefined} key={`${date}-${time}-${matchup}-${index}`}>
+                        <td>
+                          <span className="date-badge">{date}</span>
+                        </td>
+                        <td className="time-cell">{time}</td>
+                        <td>
+                          <div className="matchup-cell">
+                            <strong>{renderTeam(teamA)}</strong>
+                            <span>vs</span>
+                            <strong>{renderTeam(teamB)}</strong>
+                          </div>
+                        </td>
+                        <td>
+                          <span className={`stage-pill${stageClass ? ` ${stageClass}` : ""}`}>{stage}</span>
+                        </td>
+                        <td className="score-cell">
+                          <span>{scoreA}</span>
+                          <i>:</i>
+                          <span>{scoreB}</span>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </ScheduleTableScroll>
           </div>
         </div>
       </section>
