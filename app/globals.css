@@ -2034,6 +2034,20 @@ body {
   background: #ffffff;
 }
 
+#details .section-kicker,
+#details .fact-card span,
+#details .group-list strong,
+#details .format-list strong,
+#details .clean-list li::marker,
+#details .rank-list li::marker {
+  color: #176c9c;
+}
+
+#details .details-heading::after,
+#details .info-panel h3::before {
+  background: #176c9c;
+}
+
 .event-groups-media .info-panel {
   border-top-color: #176c9c;
 }
