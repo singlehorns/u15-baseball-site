@@ -2815,9 +2815,6 @@ body {
 }
 
 .schedule-player-collage {
-  animation: schedulePlayersDrift linear both;
-  animation-range: entry 0% exit 100%;
-  animation-timeline: view();
   filter: saturate(1.04) contrast(1.02) drop-shadow(0 22px 28px rgba(6, 29, 40, 0.22));
   height: auto;
   left: 50%;
@@ -2907,10 +2904,13 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .schedule-block::before,
-  .schedule-player-collage {
-    animation: none;
+@media screen and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .schedule-player-collage {
+      animation: schedulePlayersDrift linear both;
+      animation-timeline: view();
+      animation-range: entry 0% exit 100%;
+    }
   }
 }
 
@@ -3055,4 +3055,98 @@ body {
   .score-cell span {
     min-width: 28px;
   }
+}
+
+/* Individual transforms leave the existing scroll-driven hero transforms intact. */
+@media screen and (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    --reveal-x: 0px;
+    --reveal-y: 32px;
+    --reveal-scale: 1;
+    --reveal-delay: 0ms;
+    --reveal-duration: 760ms;
+  }
+
+  [data-reveal="heading"] {
+    --reveal-y: 24px;
+    --reveal-duration: 850ms;
+  }
+
+  [data-reveal="left"] {
+    --reveal-x: -36px;
+    --reveal-y: 0px;
+  }
+
+  [data-reveal="right"] {
+    --reveal-x: 36px;
+    --reveal-y: 0px;
+  }
+
+  [data-reveal="zoom"] {
+    --reveal-y: 20px;
+    --reveal-scale: 0.94;
+    --reveal-duration: 950ms;
+  }
+
+  [data-reveal="score"] {
+    --reveal-y: 0px;
+    --reveal-duration: 440ms;
+  }
+
+  [data-reveal-delay="1"] { --reveal-delay: 90ms; }
+  [data-reveal-delay="2"] { --reveal-delay: 180ms; }
+  [data-reveal-delay="3"] { --reveal-delay: 270ms; }
+
+  [data-reveal-state="pending"] {
+    opacity: 0;
+    translate: var(--reveal-x) var(--reveal-y);
+    scale: var(--reveal-scale);
+  }
+
+  [data-reveal-state="visible"] {
+    animation: sectionReveal var(--reveal-duration) cubic-bezier(0.2, 0.7, 0.2, 1) var(--reveal-delay) backwards;
+  }
+
+  @keyframes sectionReveal {
+    from {
+      opacity: 0;
+      translate: var(--reveal-x) var(--reveal-y);
+      scale: var(--reveal-scale);
+    }
+    to {
+      opacity: 1;
+      translate: 0 0;
+      scale: 1;
+    }
+  }
+
+  @media (max-width: 820px) {
+    [data-reveal] {
+      --reveal-x: 0px;
+      --reveal-y: 18px;
+      --reveal-duration: 520ms;
+      --reveal-delay: 0ms;
+    }
+
+    [data-reveal="score"] { --reveal-y: 0px; }
+    [data-reveal="zoom"] { --reveal-scale: 0.98; }
+    [data-reveal-delay="1"],
+    [data-reveal-delay="2"],
+    [data-reveal-delay="3"] { --reveal-delay: 60ms; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .dot-arrow span,
+  .schedule-player-collage {
+    animation: none;
+  }
+
+  .kv-bg { transform: none; }
+  .youth-pitcher { transform: translateX(-50%); }
+  .kv-title,
+  .about-peek { transform: translate(-50%, -50%); }
+  .pitch-ball { display: none; }
 }

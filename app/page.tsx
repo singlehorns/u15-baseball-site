@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useScrollReveal } from "./use-scroll-reveal";
 
 const schedule = [
   ["08/17（日）", "13:30", "香港 vs 日本", "B組預賽", "1：14"],
@@ -117,8 +118,11 @@ const awardNotes = [
 const broadcastChannels = ["緯來電視網", "愛爾達體育台", "東森電視", "小公視", "GetWin Sport", "公視+", "緯來體育 YouTube", "Hami Video", "ELTA.tv"];
 
 export default function Home() {
+  const pageRef = useRef<HTMLElement | null>(null);
   const heroRef = useRef<HTMLElement | null>(null);
   const [progress, setProgress] = useState(0);
+
+  useScrollReveal(pageRef);
 
   useEffect(() => {
     let frame = 0;
@@ -156,7 +160,7 @@ export default function Home() {
   );
 
   return (
-    <main className="site-shell">
+    <main ref={pageRef} className="site-shell">
       <header className="topbar" aria-label="主選單">
         <a className="brand" href="#top" aria-label="2025 WBSC在台南">
           <span>2025 WBSC在台南</span>
@@ -183,21 +187,21 @@ export default function Home() {
           <div className="stadium-vignette" aria-hidden="true" />
 
           <div className="pitcher-layer" aria-hidden="true">
-            <img className="youth-pitcher" src="/generated-scenes/u15-youth-pitcher.png" alt="" />
+            <img className="youth-pitcher" data-reveal="zoom" data-reveal-delay="2" src="/generated-scenes/u15-youth-pitcher.png" alt="" />
           </div>
           <img className="pitch-ball" src="/generated-scenes/real-baseball.png" alt="" aria-hidden="true" />
 
           <div className="kv-content">
             <div className="kv-main">
               <div className="kv-title" aria-label="熱血青春 主場開打">
-                <div className="title-row top">
+                <div className="title-row top" data-reveal="heading">
                   {["熱", "血", "青", "春"].map((char) => (
                     <span className="title-char" key={char}>
                       {char}
                     </span>
                   ))}
                 </div>
-                <div className="title-row bottom">
+                <div className="title-row bottom" data-reveal="heading" data-reveal-delay="1">
                   {["主", "場", "開", "打"].map((char) => (
                     <span className="title-char" key={char}>
                       {char}
@@ -206,7 +210,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="kv-subtitle">
+              <div className="kv-subtitle" data-reveal="rise" data-reveal-delay="3">
                 <p>U15亞洲青少棒</p>
                 <strong>一起見證這場年輕棒球選手的巔峰對決</strong>
               </div>
@@ -239,7 +243,7 @@ export default function Home() {
 
       <section id="about" className="intro section-band">
         <div className="section-inner roster-section">
-          <div className="roster-heading">
+          <div className="roster-heading" data-reveal="heading">
             <p className="section-kicker">Team Roster</p>
             <h2>2025 U15亞洲青少棒中華隊完整名單</h2>
             <p>
@@ -248,8 +252,8 @@ export default function Home() {
           </div>
 
           <div className="roster-grid">
-            {rosterGroups.map((group) => (
-              <article className="roster-card" key={group.role}>
+            {rosterGroups.map((group, index) => (
+              <article className="roster-card" data-reveal="rise" data-reveal-delay={index % 3} key={group.role}>
                 <h3>{group.role}</h3>
                 <ul>
                   {group.players.map((player) => (
@@ -283,7 +287,7 @@ export default function Home() {
         />
         <div className="section-inner schedule-section">
           <div className="schedule-table-wrap">
-            <div className="schedule-board-title">
+            <div className="schedule-board-title" data-reveal="heading">
               <p>Schedule / Results</p>
               <h2>2025 U15亞洲青少棒錦標賽賽程戰績表</h2>
             </div>
@@ -305,7 +309,7 @@ export default function Home() {
                     stage === "冠軍賽" ? "championship" : stage === "季軍賽" ? "third-place" : "";
 
                   return (
-                    <tr className={stageClass ? `final-row ${stageClass}-row` : undefined} key={`${date}-${time}-${matchup}-${index}`}>
+                    <tr data-reveal="score" className={stageClass ? `final-row ${stageClass}-row` : undefined} key={`${date}-${time}-${matchup}-${index}`}>
                       <td data-label="日期">
                         <span className="date-badge">{date}</span>
                       </td>
@@ -336,35 +340,37 @@ export default function Home() {
 
       <section id="tickets" className="intro section-band">
         <div className="section-inner ticket-layout">
-          <figure className="ticket-map">
+          <figure className="ticket-map" data-reveal="zoom">
             <img src="/generated-scenes/seat-map.jpg" alt="2025 U-15內野座位圖" />
             <figcaption>2025 U-15座位圖。（圖／翻攝自拓元售票系統）</figcaption>
           </figure>
 
           <div className="ticket-copy">
-            <p className="section-kicker">Tickets</p>
-            <h2>票種及座位圖</h2>
+            <div data-reveal="heading">
+              <p className="section-kicker">Tickets</p>
+              <h2>票種及座位圖</h2>
+            </div>
             <ul className="ticket-list">
-              <li>
+              <li data-reveal="right">
                 <strong>內野票：全票300元</strong>
                 <span>靠近場地的最佳觀賽位置。</span>
               </li>
-              <li>
+              <li data-reveal="right" data-reveal-delay="1">
                 <strong>外野票：目前未開放</strong>
                 <span>目前未開放外野座位，僅提供內野座位。</span>
               </li>
-              <li>
+              <li data-reveal="right" data-reveal-delay="2">
                 <strong>優待票：240元</strong>
                 <span>適用於65歲以上長者、學生及身高超過115公分的兒童，入場時需出示證件（身分證、學生證）。</span>
               </li>
-              <li>
+              <li data-reveal="right" data-reveal-delay="3">
                 <strong>身障票：150元</strong>
                 <span>適用於持身障手冊的觀眾及其陪同者1名，需出示證件。輪椅席需至現場購票，數量有限。</span>
               </li>
             </ul>
           </div>
 
-          <div className="ticket-notes">
+          <div className="ticket-notes" data-reveal="rise">
             <h3>注意事項</h3>
             <ul>
               {ticketNotes.map((note) => (
@@ -377,14 +383,14 @@ export default function Home() {
 
       <section id="details" className="details-block section-band">
         <div className="section-inner details-section">
-          <div className="details-heading">
+          <div className="details-heading" data-reveal="heading">
             <p className="section-kicker">Event Info</p>
             <h2>賽事基本資訊與規則</h2>
           </div>
 
           <div className="fact-grid">
-            {eventFacts.map(([label, value]) => (
-              <article className="fact-card" key={label}>
+            {eventFacts.map(([label, value], index) => (
+              <article className="fact-card" data-reveal="rise" data-reveal-delay={index % 4} key={label}>
                 <span>{label}</span>
                 <strong>{value}</strong>
               </article>
@@ -392,7 +398,7 @@ export default function Home() {
           </div>
 
           <div className="info-split">
-            <article className="info-panel">
+            <article className="info-panel" data-reveal="left">
               <h3>參賽隊伍分組</h3>
               <div className="group-list">
                 {tournamentGroups.map(([group, teams]) => (
@@ -404,7 +410,7 @@ export default function Home() {
               </div>
             </article>
 
-            <article className="info-panel">
+            <article className="info-panel" data-reveal="right" data-reveal-delay="1">
               <h3>轉播平台</h3>
               <div className="channel-tags">
                 {broadcastChannels.map((channel) => (
@@ -414,7 +420,7 @@ export default function Home() {
             </article>
           </div>
 
-          <article className="info-panel wide-panel">
+          <article className="info-panel wide-panel" data-reveal="rise">
             <h3>賽程設計</h3>
             <div className="format-list">
               {formatRows.map(([phase, desc]) => (
@@ -427,7 +433,7 @@ export default function Home() {
           </article>
 
           <div className="info-split">
-            <article className="info-panel">
+            <article className="info-panel" data-reveal="left">
               <h3>比賽規則</h3>
               <ul className="clean-list">
                 <li>正規 7 局制；四局領先 15 分或五局領先 10 分可提前結束。</li>
@@ -435,7 +441,7 @@ export default function Home() {
               </ul>
             </article>
 
-            <article className="info-panel">
+            <article className="info-panel" data-reveal="right" data-reveal-delay="1">
               <h3>同分排名順序</h3>
               <ol className="rank-list">
                 {tieBreakers.map((item) => (
@@ -446,7 +452,7 @@ export default function Home() {
           </div>
 
           <div className="info-split">
-            <article className="info-panel">
+            <article className="info-panel" data-reveal="left">
               <h3>投手投球限制</h3>
               <table className="compact-table">
                 <thead>
@@ -466,7 +472,7 @@ export default function Home() {
               </table>
             </article>
 
-            <article className="info-panel">
+            <article className="info-panel" data-reveal="right" data-reveal-delay="1">
               <h3>各類獎項與積分</h3>
               <ul className="clean-list">
                 {awardNotes.map((note) => (
