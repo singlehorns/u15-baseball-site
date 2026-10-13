@@ -477,6 +477,13 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <a className="back-to-top" href="#top" aria-label="TOP，回到頁首" title="回到頁首">
+        <img src="/baseball-favicon.svg" alt="" width="64" height="64" />
+        <span className="back-to-top-caption" aria-hidden="true">
+          <span className="back-to-top-arrow">&uarr;</span>
+          <span>TOP</span>
+        </span>
+      </a>
     </main>
   );
 }
