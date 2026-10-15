@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useScrollReveal } from "./use-scroll-reveal";
 import { TrackingTitle } from "./tracking-title";
 import { ScheduleResults } from "./schedule-results";
+import { FlagMarquee } from "./flag-marquee";
 
 const ticketNotes = [
   "未滿115公分的兒童可免費入場，但不得佔用座位。",
@@ -291,6 +292,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <FlagMarquee />
 
       <section id="details" className="details-block section-band">
         <div className="section-inner details-section">
