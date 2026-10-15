@@ -3130,59 +3130,23 @@ body {
 
 .flag-marquee {
   --flag-gap: clamp(24px, 3vw, 48px);
-  background: linear-gradient(180deg, #fffaf0, #f1f7fa);
-  border-block: 1px solid rgba(11, 51, 71, 0.12);
-  color: var(--navy);
+  background: #fff;
   overflow: hidden;
-  padding: 18px 0 28px;
+  padding: 18px 0;
   scroll-margin-top: 120px;
   width: 100%;
 }
 
-.flag-marquee-toolbar {
-  align-items: center;
-  display: flex;
-  gap: 16px;
-  justify-content: space-between;
-  margin: 0 auto 16px;
-  max-width: 1164px;
-  min-height: 44px;
-  padding: 0 22px;
-}
-
-.flag-marquee-toolbar p {
-  font-size: 13px;
-  font-weight: 900;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.flag-marquee-toolbar p > span {
-  color: #b85f24;
-  letter-spacing: 0.12em;
-  margin-right: 10px;
-}
-
-.flag-marquee-toggle {
-  align-items: center;
-  background: #fff;
-  border: 1px solid rgba(11, 51, 71, 0.2);
-  border-radius: 999px;
-  color: var(--navy);
+.flag-marquee-window {
+  background: none;
+  border: 0;
   cursor: pointer;
-  display: inline-flex;
-  flex: 0 0 auto;
-  font-size: 12px;
-  font-weight: 900;
-  gap: 6px;
-  min-height: 44px;
-  padding: 8px 14px;
+  display: block;
+  overflow: hidden;
+  padding: 4px 0;
+  width: 100%;
 }
 
-.flag-marquee-toggle svg { fill: currentColor; height: 16px; width: 16px; }
-.flag-marquee-toggle:hover { background: var(--paper); }
-.flag-marquee-hint { display: none; }
-.flag-marquee-window { overflow: hidden; padding: 4px 0; }
 .flag-marquee-track { display: flex; width: max-content; }
 
 .flag-marquee-group {
@@ -3199,23 +3163,15 @@ body {
   align-items: center;
   display: flex;
   flex: 0 0 108px;
-  flex-direction: column;
-  gap: 10px;
 }
 
 .flag-marquee-item img {
-  background: #fff;
-  border: 1px solid rgba(11, 51, 71, 0.14);
-  box-shadow: 0 3px 8px rgba(11, 51, 71, 0.08);
   display: block;
   height: 72px;
   object-fit: contain;
   width: 108px;
 }
 
-.flag-marquee-item span { font-size: 13px; font-weight: 900; line-height: 1.4; }
-
-.flag-marquee-toggle:focus-visible,
 .flag-marquee-window:focus-visible {
   outline: 3px solid var(--navy);
   outline-offset: -3px;
@@ -3223,12 +3179,7 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   .flag-marquee-track { animation: flagsMarquee 36s linear infinite; }
-  .flag-marquee[data-paused="true"] .flag-marquee-track,
-  .flag-marquee-window:focus-within .flag-marquee-track { animation-play-state: paused; }
-
-  @media (hover: hover) and (pointer: fine) {
-    .flag-marquee-window:hover .flag-marquee-track { animation-play-state: paused; }
-  }
+  .flag-marquee[data-paused="true"] .flag-marquee-track { animation-play-state: paused; }
 
   @keyframes flagsMarquee {
     to { transform: translateX(-50%); }
@@ -3236,20 +3187,14 @@ body {
 }
 
 @media (max-width: 720px) {
-  .flag-marquee { --flag-gap: 24px; padding: 14px 0 22px; scroll-margin-top: 60px; }
-  .flag-marquee-toolbar { gap: 10px; margin-bottom: 12px; padding: 0 18px; }
-  .flag-marquee-toolbar p { font-size: 12px; }
-  .flag-marquee-toolbar p > span { display: block; margin-right: 0; }
+  .flag-marquee { --flag-gap: 24px; padding: 14px 0; scroll-margin-top: 60px; }
   .flag-marquee-item { flex-basis: 84px; }
   .flag-marquee-item img { height: 56px; width: 84px; }
-  .flag-marquee-item span { font-size: 12px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .flag-marquee-window { overflow-x: auto; overscroll-behavior-x: contain; }
-  .flag-marquee-group + .flag-marquee-group,
-  .flag-marquee-toggle { display: none; }
-  .flag-marquee-hint { color: #335a52; display: inline; font-size: 12px; }
+  .flag-marquee-group + .flag-marquee-group { display: none; }
 }
 
 .schedule-filters {
