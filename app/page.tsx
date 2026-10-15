@@ -3,43 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { useScrollReveal } from "./use-scroll-reveal";
 import { TrackingTitle } from "./tracking-title";
-import { ScheduleTableScroll } from "./schedule-table-scroll";
-
-const schedule = [
-  ["08/17（日）", "13:30", "香港 vs 日本", "B組預賽", "1：14"],
-  ["08/17（日）", "13:30", "斯里蘭卡 vs 菲律賓", "B組預賽", "1：11"],
-  ["08/17（日）", "18:30", "韓國 vs 台灣", "A組預賽", "5：3"],
-  ["08/17（日）", "19:30", "巴基斯坦 vs 泰國", "A組預賽", "16：2"],
-  ["08/18（一）", "13:30", "香港 vs 菲律賓", "B組預賽", "2：3"],
-  ["08/18（一）", "13:30", "日本 vs 斯里蘭卡", "B組預賽", "24：1"],
-  ["08/18（一）", "18:30", "泰國 vs 韓國", "A組預賽", "0：16"],
-  ["08/18（一）", "18:30", "台灣 vs 巴基斯坦", "A組預賽", "27：0"],
-  ["08/19（二）", "13:30", "巴基斯坦 vs 韓國", "A組預賽", "0：24"],
-  ["08/19（二）", "13:30", "菲律賓 vs 日本", "B組預賽", "0：10"],
-  ["08/19（二）", "18:30", "斯里蘭卡 vs 香港", "B組預賽", "3：10"],
-  ["08/19（二）", "18:30", "泰國 vs 台灣", "A組預賽", "0：18"],
-  ["08/21（四）", "13:30", "日本 vs 韓國", "超級循環賽", "5：1"],
-  ["08/21（四）", "13:30", "斯里蘭卡 vs 泰國", "排名賽", "7：3"],
-  ["08/21（四）", "18:30", "台灣 vs 菲律賓", "超級循環賽", "10：0"],
-  ["08/21（四）", "18:30", "巴基斯坦 vs 香港", "排名賽", "3：4"],
-  ["08/22（五）", "13:30", "韓國 vs 菲律賓", "超級循環賽", "16：1"],
-  ["08/22（五）", "13:30", "香港 vs 泰國", "排名賽", "12：2"],
-  ["08/22（五）", "18:30", "日本 vs 台灣", "超級循環賽", "7：10"],
-  ["08/22（五）", "18:30", "巴基斯坦 vs 斯里蘭卡", "排名賽", "9：5"],
-  ["08/23（六）", "13:00", "菲律賓 vs 韓國", "季軍賽", "0：15"],
-  ["08/23（六）", "18:30", "日本 vs 台灣", "冠軍賽", "0：3"],
-];
-
-const teamFlagSrc: Record<string, string> = {
-  台灣: "/generated-scenes/flags/tw.svg",
-  日本: "/generated-scenes/flags/jp.svg",
-  韓國: "/generated-scenes/flags/kr.svg",
-  香港: "/generated-scenes/flags/hk.svg",
-  菲律賓: "/generated-scenes/flags/ph.svg",
-  斯里蘭卡: "/generated-scenes/flags/lk.svg",
-  巴基斯坦: "/generated-scenes/flags/pk.svg",
-  泰國: "/generated-scenes/flags/th.svg",
-};
+import { ScheduleResults } from "./schedule-results";
 
 const ticketNotes = [
   "未滿115公分的兒童可免費入場，但不得佔用座位。",
@@ -154,12 +118,6 @@ export default function Home() {
   }, []);
 
   const style = { "--p": progress } as CSSProperties;
-  const renderTeam = (team: string) => (
-    <>
-      <img className="team-flag" src={teamFlagSrc[team]} alt={`${team}國旗`} loading="lazy" />
-      <span>{team}</span>
-    </>
-  );
 
   return (
     <main ref={pageRef} className="site-shell">
@@ -286,51 +244,7 @@ export default function Home() {
               <p data-reveal="heading">Schedule / Results</p>
               <TrackingTitle text="2025 U15亞洲青少棒錦標賽賽程戰績表" />
             </div>
-            <ScheduleTableScroll>
-              <table className="schedule-table" aria-label="2025 U15亞洲青少棒賽程戰績">
-                <thead>
-                  <tr>
-                    <th scope="col">日期</th>
-                    <th scope="col">時間</th>
-                    <th scope="col">對戰組合</th>
-                    <th scope="col">階段</th>
-                    <th scope="col">比分</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {schedule.map(([date, time, matchup, stage, score], index) => {
-                    const [teamA, teamB] = matchup.split(" vs ");
-                    const [scoreA, scoreB] = score.split("：");
-                    const stageClass =
-                      stage === "冠軍賽" ? "championship" : stage === "季軍賽" ? "third-place" : "";
-
-                    return (
-                      <tr data-reveal="score" className={stageClass ? `final-row ${stageClass}-row` : undefined} key={`${date}-${time}-${matchup}-${index}`}>
-                        <td>
-                          <span className="date-badge">{date}</span>
-                        </td>
-                        <td className="time-cell">{time}</td>
-                        <td>
-                          <div className="matchup-cell">
-                            <strong>{renderTeam(teamA)}</strong>
-                            <span>vs</span>
-                            <strong>{renderTeam(teamB)}</strong>
-                          </div>
-                        </td>
-                        <td>
-                          <span className={`stage-pill${stageClass ? ` ${stageClass}` : ""}`}>{stage}</span>
-                        </td>
-                        <td className="score-cell">
-                          <span>{scoreA}</span>
-                          <i>:</i>
-                          <span>{scoreB}</span>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </ScheduleTableScroll>
+            <ScheduleResults />
           </div>
         </div>
       </section>
