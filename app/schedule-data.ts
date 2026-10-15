@@ -26,7 +26,7 @@ export const schedule = [
 ] as const satisfies readonly ScheduleMatch[];
 
 export const teamFlagSrc: Record<string, string> = {
-  台灣: "/generated-scenes/flags/tw.svg?v=2",
+  台灣: "/generated-scenes/flags/tw.svg?v=3",
   日本: "/generated-scenes/flags/jp.svg",
   韓國: "/generated-scenes/flags/kr.svg",
   香港: "/generated-scenes/flags/hk.svg",
